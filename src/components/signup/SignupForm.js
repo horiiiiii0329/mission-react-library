@@ -30,18 +30,25 @@ const SignupForm = () => {
           "Content-Type": "application/json",
         },
       }
-    ).then((res) => {
-      setIsLoading(false);
-      if (res.ok) {
-        return res.json();
-      } else {
-        return res.json().then((data) => {
-          let errorMessage = data.ErrorMessageJP;
-          setErrorMessage(errorMessage);
-          throw new Error(errorMessage);
-        });
-      }
-    });
+    )
+      .then((res) => {
+        setIsLoading(false);
+        if (res.ok) {
+          return res.json();
+        } else {
+          return res.json().then((data) => {
+            let errorMessage = "Authenticationerror";
+
+            throw new Error(errorMessage);
+          });
+        }
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
   };
 
   return (

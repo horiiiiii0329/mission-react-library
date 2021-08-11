@@ -5,7 +5,11 @@ const BookItem = () => {
 
   useEffect(() => {
     fetch(
-      "https://app.swaggerhub.com/apis-docs/Takumaron/TechTrain-RailwayMission/1.0.0#/book/get_books"
+      "https://app.swaggerhub.com/apis-docs/Takumaron/TechTrain-RailwayMission/1.0.0#/book/get_public_books",
+      {
+        method: "GET",
+        headers: {},
+      }
     )
       .then((response) => response.json())
       .then((data) => {
