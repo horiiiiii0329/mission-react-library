@@ -61,9 +61,7 @@ const SignupForm = () => {
         </div>
         {isLoading && <p>{errorMessage}</p>}
         <div className={classes.actions}>
-          <button type="button" className={classes.toggle}>
-            サインアップ
-          </button>
+          <button className={classes.toggle}>サインアップ</button>
         </div>
       </form>
     </section>

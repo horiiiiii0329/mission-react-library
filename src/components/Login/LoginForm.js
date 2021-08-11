@@ -54,9 +54,7 @@ const LoginForm = () => {
         </div>
         {isLoading && <p>{errorMessage}</p>}
         <div className={classes.actions}>
-          <button type="button" className={classes.toggle}>
-            ログイン
-          </button>
+          <button className={classes.toggle}>ログイン</button>
         </div>
       </form>
     </section>
