@@ -1,12 +1,12 @@
-import "./App.css";
 import { Route, Switch } from "react-router-dom";
+import Layout from "./components/Layout/Layout";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 
 function App() {
   return (
-    <div className="App">
+    <Layout>
       <Switch>
         <Route path="/" exact>
           <HomePage />
@@ -18,7 +18,7 @@ function App() {
           <SignupPage />
         </Route>
       </Switch>
-    </div>
+    </Layout>
   );
 }
 
