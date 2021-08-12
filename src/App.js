@@ -1,9 +1,9 @@
 import { Route, Switch } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
-import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
 import SignupPage from "./pages/SignupPage";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
