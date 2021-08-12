@@ -1,6 +1,6 @@
 import BookItem from "./BookItem";
 import classes from "./BookList.module.css";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
 const DUMMY_DATA = [
   {

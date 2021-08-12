@@ -2,6 +2,7 @@ import { Route, Switch } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
+import ProfilePage from "./pages/ProfilePage";
 import SignupPage from "./pages/SignupPage";
 
 function App() {
@@ -16,6 +17,9 @@ function App() {
         </Route>
         <Route path="/signup">
           <SignupPage />
+        </Route>
+        <Route path="/profile">
+          <ProfilePage />
         </Route>
       </Switch>
     </Layout>

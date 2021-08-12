@@ -1,12 +1,16 @@
 import classes from "./LoginForm.module.css";
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
+import AuthContext from "../../store/auth-context";
+import { useHistory } from "react-router";
 
 const LoginForm = () => {
+  const history = useHistory();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
+  const authCtx = useContext(AuthContext);
+
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -15,6 +19,7 @@ const LoginForm = () => {
     const enteredpassword = passwordInputRef.current.value;
 
     setIsLoading(true);
+
     fetch(
       "https://app.swaggerhub.com/apis-docs/Takumaron/TechTrain-RailwayMission/1.0.0#/user/post_signin",
       {
@@ -27,18 +32,26 @@ const LoginForm = () => {
           "Content-Type": "application/json",
         },
       }
-    ).then((res) => {
-      setIsLoading(false);
-      if (res.ok) {
-        return res.json();
-      } else {
-        return res.json().then((data) => {
-          let errorMessage = data.ErrorMessageJP;
-          setErrorMessage(errorMessage);
-          throw new Error(errorMessage);
-        });
-      }
-    });
+    )
+      .then((res) => {
+        setIsLoading(false);
+        if (res.ok) {
+          return res.json();
+        } else {
+          return res.json().then((data) => {
+            let errorMessage = "Authentication Fail!";
+
+            throw new Error(errorMessage);
+          });
+        }
+      })
+      .then((data) => {
+        authCtx.login(data.token);
+        history.replace("/");
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
   };
 
   return (
@@ -52,7 +65,7 @@ const LoginForm = () => {
           <label htmlFor="password">パスワード</label>
           <input type="password" id="password" ref={passwordInputRef} />
         </div>
-        {isLoading && <p>{errorMessage}</p>}
+        {isLoading && <p>送信中。。。</p>}
         <div className={classes.actions}>
           <button className={classes.toggle}>ログイン</button>
         </div>

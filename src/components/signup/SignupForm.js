@@ -1,13 +1,17 @@
 import classes from "./SignupForm.module.css";
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
+import { useHistory } from "react-router";
+import AuthContext from "../../store/auth-context";
 
 const SignupForm = () => {
   const nameInputRef = useRef();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
+  const authCtx = useContext(AuthContext);
+  const history = useHistory();
+
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -39,14 +43,15 @@ const SignupForm = () => {
           return res.json();
         } else {
           return res.json().then((data) => {
-            let errorMessage = "Authenticationerror";
+            let errorMessage = "Authentication error";
 
             throw new Error(errorMessage);
           });
         }
       })
       .then((data) => {
-        console.log(data);
+        authCtx.login(data.token);
+        history.replaceState("/");
       })
       .catch((err) => {
         alert(err.message);
@@ -68,7 +73,7 @@ const SignupForm = () => {
           <label htmlFor="password">パスワード</label>
           <input type="password" id="password" ref={passwordInputRef} />
         </div>
-        {isLoading && <p>{errorMessage}</p>}
+        {isLoading && <p>送信中。。。</p>}
         <div className={classes.actions}>
           <button className={classes.toggle}>サインアップ</button>
         </div>
