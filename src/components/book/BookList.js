@@ -1,5 +1,6 @@
 import BookItem from "./BookItem";
 import classes from "./BookList.module.css";
+import { useEffect, useState } from "react";
 
 const DUMMY_DATA = [
   {
@@ -32,6 +33,22 @@ const DUMMY_DATA = [
 ];
 
 const bookList = (props) => {
+  // const [book, setBook] = useState(null);
+
+  // useEffect(() => {
+  //   fetch(
+  //     "https://app.swaggerhub.com/apis-docs/Takumaron/TechTrain-RailwayMission/1.0.0#/book/get_public_books",
+  //     {
+  //       method: "GET",
+  //       headers: {},
+  //     }
+  //   )
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setBook(data);
+  //     });
+  // });
+
   return (
     <ul className={classes.list}>
       {DUMMY_DATA.map((book) => (
