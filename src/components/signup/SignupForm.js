@@ -43,7 +43,7 @@ const SignupForm = () => {
       })
       .then((data) => {
         authCtx.login(data.token);
-        // history.replaceState("/");
+        history("/book");
       })
       .catch((err) => {
         alert(err.message);

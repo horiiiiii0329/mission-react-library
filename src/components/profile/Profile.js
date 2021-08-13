@@ -1,4 +1,4 @@
-import { useRef, useContext } from "react";
+import { useRef, useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import AuthContext from "../../store/auth-context";
@@ -9,15 +9,25 @@ const Profile = () => {
 
   const newNameInputRef = useRef();
   const authCtx = useContext(AuthContext);
+  const [userName, setUserName] = useState(null);
+
+  fetch("https://api-for-missions-and-railways.herokuapp.com/users", {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${authCtx.token}`,
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      setUserName(data.name);
+    });
 
   const submitHandler = (e) => {
     e.preventDefault();
 
     const enteredNewName = newNameInputRef.current.value;
 
-    // add validation
-
-    fetch("https://api-for-missions-and-railways.herokuapp.com/public/users", {
+    fetch("https://api-for-missions-and-railways.herokuapp.com/users", {
       method: "PUT",
       body: JSON.stringify({
         name: enteredNewName,
@@ -27,7 +37,7 @@ const Profile = () => {
         Authorization: `Bearer ${authCtx.token}`,
       },
     }).then((res) => {
-      history.replace("/");
+      history.replace("/book");
     });
   };
 
@@ -35,12 +45,12 @@ const Profile = () => {
     <section className={classes.profile}>
       <form className={classes.form} onSubmit={submitHandler}>
         <div className={classes.control}>
-          <label htmlFor="new-password">ユーザー名</label>
+          <label htmlFor="new-password">ユーザー名:{userName}</label>
           <input
             type="text"
             id="new-name"
             ref={newNameInputRef}
-            placeholder="???"
+            placeholder="ユーザー名"
           />
         </div>
         <div className={classes.action}>

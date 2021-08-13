@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 
 import classes from "./MainNavigation.module.css";
 import AuthContext from "../../store/auth-context";
@@ -14,20 +14,18 @@ const MainNavigation = () => {
     authCtx.logout();
   };
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      fetch("https://api-for-missions-and-railways.herokuapp.com/users", {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${authCtx.token}`,
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setUserName(data.name);
-        });
-    }
-  }, [isLoggedIn, authCtx.token]);
+  if (isLoggedIn) {
+    fetch("https://api-for-missions-and-railways.herokuapp.com/users", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${authCtx.token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setUserName(data.name);
+      });
+  }
 
   return (
     <header className={classes.header}>
@@ -36,7 +34,7 @@ const MainNavigation = () => {
       </Link>
       <nav>
         <ul>
-          {isLoggedIn && <li>{userName}</li>}
+          {isLoggedIn && <li>{userName}　さん</li>}
           {!isLoggedIn && (
             <li>
               <Link to="/login">ログイン</Link>

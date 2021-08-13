@@ -44,7 +44,7 @@ const LoginForm = () => {
       })
       .then((data) => {
         authCtx.login(data.token);
-        history.replace("/");
+        history.replace("/book");
       })
       .catch((err) => {
         alert(err.message);
