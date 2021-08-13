@@ -1,0 +1,11 @@
+.starting {
+  display: flex;
+  margin: 3rem auto;
+  text-align: center;
+  height: 80vh;
+}
+
+.starting h1 {
+  font-size: 5rem;
+  margin: auto;
+}

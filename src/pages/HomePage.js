@@ -1,7 +1,7 @@
-import BookList from "../components/book/BookList";
+import StartingPage from "../components/startingpage/StartingPage";
 
 const HomePage = () => {
-  return <BookList></BookList>;
+  return <StartingPage></StartingPage>;
 };
 
 export default HomePage;
