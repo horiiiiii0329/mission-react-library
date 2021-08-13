@@ -8,6 +8,7 @@ import { useContext } from "react";
 import AuthContext from "./store/auth-context";
 import BookList from "./components/book/BookList";
 import NewBookPage from "./pages/NewBookPage";
+import BookDetailPage from "./pages/BookDetailPage";
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -33,7 +34,11 @@ function App() {
             <NewBookPage />
           </Route>
         )}
-        {!authCtx.isLoggedIn && <Route path="/book/:id"></Route>}
+        {authCtx.isLoggedIn && (
+          <Route path="/detail/:id">
+            <BookDetailPage />
+          </Route>
+        )}
         {authCtx.isLoggedIn && (
           <Route path="/profile">
             <ProfilePage />
@@ -44,9 +49,9 @@ function App() {
             <BookList />
           </Route>
         )}
-        <Route path="*">
+        {/* <Route path="*">
           <Redirect to="/"></Redirect>
-        </Route>
+        </Route> */}
       </Switch>
     </Layout>
   );

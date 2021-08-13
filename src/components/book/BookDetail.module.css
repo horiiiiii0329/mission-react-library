@@ -1,0 +1,38 @@
+.detail {
+  color: black;
+  border-radius: 6px;
+  border: solid 1px #38015c;
+  padding: 3rem;
+  margin: 3rem auto;
+  width: 90%;
+  display: inline-block;
+  overflow-wrap: break-word;
+}
+
+.detail hr {
+  color: #38015c;
+}
+.detail h3 {
+  margin-bottom: 1rem;
+  color: #38015c;
+}
+
+.detail p {
+  margin-top: 0rem;
+  font-size: 1.5rem;
+}
+
+.title p {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #38015c;
+  margin-bottom: 0.25rem;
+}
+
+.title a {
+  font-size: 1rem;
+}
+
+.comments span {
+  font-size: 0.6rem;
+}

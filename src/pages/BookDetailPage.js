@@ -1,5 +1,7 @@
+import BookDetail from "../components/book/BookDetail";
+
 const BookDetailPage = () => {
-  return <p>LOL</p>;
+  return <BookDetail />;
 };
 
 export default BookDetailPage;

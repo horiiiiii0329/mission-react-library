@@ -12,7 +12,7 @@ const BookItem = (props) => {
         </blockquote>
         <figcaption>{text.substring(0, 100)}...</figcaption>
       </figure>
-      <Link className="btn" to="/">
+      <Link className="btn" to={`/detail/${props.id}`}>
         詳細
       </Link>
     </li>
