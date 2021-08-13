@@ -33,6 +33,7 @@ function App() {
             <NewBookPage />
           </Route>
         )}
+        {!authCtx.isLoggedIn && <Route path="/book/:id"></Route>}
         {authCtx.isLoggedIn && (
           <Route path="/profile">
             <ProfilePage />
