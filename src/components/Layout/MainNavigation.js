@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 import classes from "./MainNavigation.module.css";
 import AuthContext from "../../store/auth-context";
@@ -14,7 +15,7 @@ const MainNavigation = () => {
     authCtx.logout();
   };
 
-  if (isLoggedIn) {
+  useEffect(() => {
     fetch("https://api-for-missions-and-railways.herokuapp.com/users", {
       method: "GET",
       headers: {
@@ -25,7 +26,7 @@ const MainNavigation = () => {
       .then((data) => {
         setUserName(data.name);
       });
-  }
+  });
 
   return (
     <header className={classes.header}>

@@ -1,0 +1,58 @@
+.title {
+  color: #38015c;
+  font-size: 2.5rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.form {
+  position: relative;
+}
+
+.control {
+  margin-bottom: 0.5rem;
+}
+
+.control label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.control input,
+.control textarea {
+  font: inherit;
+  padding: 0.35rem;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  border: 1px solid #c1d1d1;
+  display: block;
+  width: 100%;
+  font-size: 1.25rem;
+}
+
+.control input:focus,
+.control textarea:focus {
+  outline-color: #38015c;
+}
+
+.actions {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.actions button {
+  font: inherit;
+  background-color: #38015c;
+  border: 1px solid #38015c;
+  color: white;
+  font-weight: bold;
+  padding: 0.5rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.actions button:hover {
+  background-color: transparent;
+  color: #38015c;
+}

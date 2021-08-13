@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage";
 import { useContext } from "react";
 import AuthContext from "./store/auth-context";
 import BookList from "./components/book/BookList";
+import NewBookPage from "./pages/NewBookPage";
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -25,6 +26,11 @@ function App() {
         {!authCtx.isLoggedIn && (
           <Route path="/signup">
             <SignupPage />
+          </Route>
+        )}
+        {authCtx.isLoggedIn && (
+          <Route path="/new">
+            <NewBookPage />
           </Route>
         )}
         {authCtx.isLoggedIn && (

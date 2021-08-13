@@ -38,6 +38,7 @@ const Profile = () => {
       },
     }).then((res) => {
       history.replace("/book");
+      history.go(0);
     });
   };
 
