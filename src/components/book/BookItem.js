@@ -2,13 +2,15 @@ import { Link } from "react-router-dom";
 import classes from "./BookItem.module.css";
 
 const BookItem = (props) => {
+  const text = props.text;
+
   return (
     <li className={classes.item}>
       <figure>
         <blockquote>
           <p>{props.title}</p>
         </blockquote>
-        <figcaption>{props.text}</figcaption>
+        <figcaption>{text.substring(0, 100)}...</figcaption>
       </figure>
       <Link className="btn" to="/">
         詳細

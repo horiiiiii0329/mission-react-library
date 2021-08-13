@@ -17,19 +17,16 @@ const Profile = () => {
 
     // add validation
 
-    fetch(
-      "https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyBZhsabDexE9BhcJbGxnZ4DiRlrCN9xe24",
-      {
-        method: "PUT",
-        body: JSON.stringify({
-          name: enteredNewName,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${authCtx.token}`,
-        },
-      }
-    ).then((res) => {
+    fetch("https://api-for-missions-and-railways.herokuapp.com/public/users", {
+      method: "PUT",
+      body: JSON.stringify({
+        name: enteredNewName,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${authCtx.token}`,
+      },
+    }).then((res) => {
       history.replace("/");
     });
   };

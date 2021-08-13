@@ -21,21 +21,14 @@ const SignupForm = () => {
     const enteredpassword = passwordInputRef.current.value;
 
     setIsLoading(true);
-    fetch(
-      "https://app.swaggerhub.com/apis-docs/Takumaron/TechTrain-RailwayMission/1.0.0#/user/post_users",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          name: enteredName,
-          email: enteredEmail,
-          password: enteredpassword,
-        }),
-        headers: {
-          "Access-Control-Allow-Headers": "Content-Type",
-          "Access-Control-Allow-Origin": "*",
-        },
-      }
-    )
+    fetch("https://api-for-missions-and-railways.herokuapp.com/users", {
+      method: "POST",
+      body: JSON.stringify({
+        name: enteredName,
+        email: enteredEmail,
+        password: enteredpassword,
+      }),
+    })
       .then((res) => {
         setIsLoading(false);
         if (res.ok) {
@@ -50,7 +43,7 @@ const SignupForm = () => {
       })
       .then((data) => {
         authCtx.login(data.token);
-        history.replaceState("/");
+        // history.replaceState("/");
       })
       .catch((err) => {
         alert(err.message);

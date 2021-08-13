@@ -20,19 +20,16 @@ const LoginForm = () => {
 
     setIsLoading(true);
 
-    fetch(
-      "https://app.swaggerhub.com/apis-docs/Takumaron/TechTrain-RailwayMission/1.0.0#/user/post_signin",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          email: enteredEmail,
-          password: enteredpassword,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
+    fetch("https://api-for-missions-and-railways.herokuapp.com/signin", {
+      method: "POST",
+      body: JSON.stringify({
+        email: enteredEmail,
+        password: enteredpassword,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then((res) => {
         setIsLoading(false);
         if (res.ok) {
