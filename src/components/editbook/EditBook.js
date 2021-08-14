@@ -27,7 +27,7 @@ const EditBook = () => {
       .catch((err) => alert(err));
   });
 
-  const updatetHandler = (e) => {
+  const updateHandler = (e) => {
     e.preventDefault();
 
     const enteredTitle = enterTitleInputRef.current.value;
