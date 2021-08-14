@@ -1,5 +1,5 @@
-import { useRef, useState, useContext } from "react";
-import NewBookPage from "../../pages/NewBookPage";
+import { useRef, useContext } from "react";
+// import NewBookPage from "../../pages/NewBookPage";
 import { useHistory } from "react-router-dom";
 import AuthContext from "../../store/auth-context";
 
@@ -58,7 +58,7 @@ const NewBookForm = () => {
           <input type="text" ref={enterReviewInputRef} />
         </div>
         <div className={classes.actions}>
-          <button class>登録</button>
+          <button>登録</button>
         </div>
       </form>
     </>

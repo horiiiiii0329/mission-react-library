@@ -36,7 +36,7 @@ function App() {
         )}
         {authCtx.isLoggedIn && (
           <Route path="/detail/:id">
-            <BookDetailPage />
+            <BookDetailPage></BookDetailPage>
           </Route>
         )}
         {authCtx.isLoggedIn && (

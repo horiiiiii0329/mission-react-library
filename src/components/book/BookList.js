@@ -1,6 +1,7 @@
 import BookItem from "./BookItem";
 import classes from "./BookList.module.css";
 import { useEffect, useState } from "react";
+import AddBookCard from "../addbook/AddBookCard";
 
 const BookList = (props) => {
   const [book, setBook] = useState("");
@@ -17,6 +18,7 @@ const BookList = (props) => {
 
   return (
     <ul className={classes.list}>
+      <AddBookCard />
       {book &&
         book.map((book) => (
           <BookItem
