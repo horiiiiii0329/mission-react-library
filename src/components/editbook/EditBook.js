@@ -50,7 +50,15 @@ const EditBook = () => {
     }).then(history.replace("/book"), history.go(0));
   };
 
-  const deleteHandler = () => {};
+  const deleteHandler = () => {
+    fetch(`https://api-for-missions-and-railways.herokuapp.com/books/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${authCtx.token}`,
+      },
+    }).then(history.replace("/book"), history.go(0));
+  };
 
   return (
     <>

@@ -1,3 +1,7 @@
-const EditBookPage = () => {};
+import EditBook from "../components/editbook/EditBook";
 
-export default EditBookPage;
+const BookEditPage = () => {
+  return <EditBook></EditBook>;
+};
+
+export default BookEditPage;
