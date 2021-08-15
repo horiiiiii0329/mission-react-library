@@ -22,9 +22,14 @@ const EditBook = () => {
         Authorization: `Bearer ${authCtx.token}`,
       },
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw response;
+      })
       .then((data) => setBookdetail(data))
-      .catch((err) => alert(err));
+      .catch((err) => console.log(err));
   });
 
   const updateHandler = (e) => {
@@ -47,17 +52,16 @@ const EditBook = () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${authCtx.token}`,
       },
-    }).then();
+    }).then(history.replace("/book"), history.go(0));
   };
 
   const deleteHandler = () => {
     fetch(`https://api-for-missions-and-railways.herokuapp.com/books/${id}`, {
       method: "DELETE",
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${authCtx.token}`,
       },
-    }).then();
+    }).then(history.replace("/book"), history.go(0));
   };
 
   return (

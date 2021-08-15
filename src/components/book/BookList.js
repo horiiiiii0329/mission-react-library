@@ -5,7 +5,7 @@ import AddBookCard from "../addbook/AddBookCard";
 import AuthContext from "../../store/auth-context";
 
 const BookList = (props) => {
-  const [book, setBook] = useState("");
+  const [book, setBook] = useState(null);
   const authCtx = useContext(AuthContext);
 
   useEffect(() => {
@@ -15,9 +15,14 @@ const BookList = (props) => {
         Authorization: `Bearer ${authCtx.token}`,
       },
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw response;
+      })
       .then((data) => setBook(data))
-      .catch((err) => alert(err));
+      .catch((err) => console.log(err));
   });
 
   return (

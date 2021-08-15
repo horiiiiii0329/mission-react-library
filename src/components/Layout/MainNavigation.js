@@ -21,10 +21,14 @@ const MainNavigation = () => {
         Authorization: `Bearer ${authCtx.token}`,
       },
     })
-      .then((response) => response.json())
-      .then((data) => {
-        setUserName(data.name);
-      });
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw response;
+      })
+      .then((data) => setUserName(data.name))
+      .catch((err) => console.log(err));
   }
 
   return (

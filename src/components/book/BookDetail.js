@@ -15,10 +15,15 @@ const BookDetail = () => {
         Authorization: `Bearer ${authCtx.token}`,
       },
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw response;
+      })
       .then((data) => setBookdetail(data))
-      .catch((err) => alert(err));
-  });
+      .catch((err) => console.log(err));
+  }, [authCtx.token, id]);
 
   return (
     <>

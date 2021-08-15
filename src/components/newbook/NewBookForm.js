@@ -14,6 +14,7 @@ const NewBookForm = () => {
   const enterReviewInputRef = useRef();
 
   const authCtx = useContext(AuthContext);
+
   const submitHandler = (e) => {
     e.preventDefault();
 
