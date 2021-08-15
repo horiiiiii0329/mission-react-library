@@ -14,7 +14,7 @@ const MainNavigation = () => {
     authCtx.logout();
   };
 
-  useEffect(() => {
+  if (isLoggedIn) {
     fetch("https://api-for-missions-and-railways.herokuapp.com/users", {
       method: "GET",
       headers: {
@@ -25,7 +25,7 @@ const MainNavigation = () => {
       .then((data) => {
         setUserName(data.name);
       });
-  });
+  }
 
   return (
     <header className={classes.header}>

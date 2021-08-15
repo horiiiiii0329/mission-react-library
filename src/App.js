@@ -55,9 +55,9 @@ function App() {
             <BookList />
           </Route>
         )}
-        {/* <Route path="*">
+        <Route path="*">
           <Redirect to="/"></Redirect>
-        </Route> */}
+        </Route>
       </Switch>
     </Layout>
   );

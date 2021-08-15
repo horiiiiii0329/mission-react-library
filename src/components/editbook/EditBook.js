@@ -47,7 +47,7 @@ const EditBook = () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${authCtx.token}`,
       },
-    }).then(history.replace("/book"), history.go(0));
+    }).then();
   };
 
   const deleteHandler = () => {
@@ -57,54 +57,56 @@ const EditBook = () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${authCtx.token}`,
       },
-    }).then(history.replace("/book"), history.go(0));
+    }).then();
   };
 
   return (
     <>
       <h2 className={classes.title}>書籍情報を変更する</h2>
-      <form className={classes.form} onSubmit={updateHandler}>
-        <div className={classes.control}>
-          <label htmlFor="title">タイトル</label>
-          <input
-            type="text"
-            ref={enterTitleInputRef}
-            defaultValue={bookDetail.title}
-          />
-        </div>
-        <div className={classes.control}>
-          <label htmlFor="url">リンク</label>
-          <input
-            type="text"
-            ref={enterUrlInputRef}
-            defaultValue={bookDetail.url}
-          />
-        </div>
-        <div className={classes.control}>
-          <label htmlFor="link">詳細</label>
-          <input
-            type="text"
-            ref={enterDetailInputRef}
-            defaultValue={bookDetail.detail}
-          />
-        </div>
-        <div className={classes.control}>
-          <label htmlFor="review">感想 </label>
-          <input
-            type="text"
-            ref={enterReviewInputRef}
-            defaultValue={bookDetail.review}
-          />
-        </div>
-        <div className={classes.actions}>
-          <button>更新</button>
-        </div>
-        <div className={classes.actions}>
-          <button type="button" onClick={deleteHandler}>
-            消去
-          </button>
-        </div>
-      </form>
+      {bookDetail && (
+        <form className={classes.form} onSubmit={updateHandler}>
+          <div className={classes.control}>
+            <label htmlFor="title">タイトル</label>
+            <input
+              type="text"
+              ref={enterTitleInputRef}
+              defaultValue={bookDetail.title}
+            />
+          </div>
+          <div className={classes.control}>
+            <label htmlFor="url">リンク</label>
+            <input
+              type="text"
+              ref={enterUrlInputRef}
+              defaultValue={bookDetail.url}
+            />
+          </div>
+          <div className={classes.control}>
+            <label htmlFor="link">詳細</label>
+            <input
+              type="text"
+              ref={enterDetailInputRef}
+              defaultValue={bookDetail.detail}
+            />
+          </div>
+          <div className={classes.control}>
+            <label htmlFor="review">感想 </label>
+            <input
+              type="text"
+              ref={enterReviewInputRef}
+              defaultValue={bookDetail.review}
+            />
+          </div>
+          <div className={classes.actions}>
+            <button>更新</button>
+          </div>
+          <div className={classes.actions}>
+            <button type="button" onClick={deleteHandler}>
+              消去
+            </button>
+          </div>
+        </form>
+      )}
     </>
   );
 };
