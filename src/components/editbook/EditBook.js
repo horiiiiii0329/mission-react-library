@@ -30,7 +30,7 @@ const EditBook = () => {
       })
       .then((data) => setBookdetail(data))
       .catch((err) => console.log(err));
-  });
+  }, [authCtx.token, id]);
 
   const updateHandler = (e) => {
     e.preventDefault();
@@ -61,7 +61,7 @@ const EditBook = () => {
       headers: {
         Authorization: `Bearer ${authCtx.token}`,
       },
-    }).then(history.replace("/book"), history.go(0));
+    }).then(history.replace("/book"));
   };
 
   return (

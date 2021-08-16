@@ -9,6 +9,7 @@ const BookList = (props) => {
   const authCtx = useContext(AuthContext);
 
   useEffect(() => {
+    let isMounted = true;
     fetch("https://api-for-missions-and-railways.herokuapp.com/books", {
       method: "GET",
       headers: {
@@ -21,9 +22,16 @@ const BookList = (props) => {
         }
         throw response;
       })
-      .then((data) => setBook(data))
+      .then((data) => {
+        if (isMounted) {
+          setBook(data);
+        }
+      })
       .catch((err) => console.log(err));
-  }, [authCtx.token]);
+    return () => {
+      isMounted = false;
+    };
+  }, [authCtx]);
 
   return (
     <ul className={classes.list}>
