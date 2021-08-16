@@ -7,9 +7,9 @@ import AuthContext from "../../store/auth-context";
 const BookList = (props) => {
   const [book, setBook] = useState(null);
   const authCtx = useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    let isMounted = true;
     fetch("https://api-for-missions-and-railways.herokuapp.com/books", {
       method: "GET",
       headers: {
@@ -23,15 +23,13 @@ const BookList = (props) => {
         throw response;
       })
       .then((data) => {
-        if (isMounted) {
-          setBook(data);
-        }
+        setBook(data);
       })
-      .catch((err) => console.log(err));
-    return () => {
-      isMounted = false;
-    };
-  }, [authCtx]);
+      .catch((err) => console.log(err))
+      .finally(setIsLoading(false));
+  });
+
+  if (isLoading) return "Loading...";
 
   return (
     <ul className={classes.list}>

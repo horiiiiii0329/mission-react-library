@@ -35,7 +35,7 @@ const NewBookForm = () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${authCtx.token}`,
       },
-    }).then(history.replace("/book"), history.go(0));
+    }).then(history.replace("/book"));
   };
 
   return (
@@ -48,7 +48,7 @@ const NewBookForm = () => {
         </div>
         <div className={classes.control}>
           <label htmlFor="url">リンク</label>
-          <input type="url" ref={enterUrlInputRef} />
+          <input type="text" ref={enterUrlInputRef} />
         </div>
         <div className={classes.control}>
           <label htmlFor="link">詳細</label>
