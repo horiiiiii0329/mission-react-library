@@ -95,7 +95,7 @@ const EditBook = () => {
           </div>
           <div className={classes.control}>
             <label htmlFor="review">感想 </label>
-            <input
+            <textarea
               type="text"
               ref={enterReviewInputRef}
               defaultValue={bookDetail.review}

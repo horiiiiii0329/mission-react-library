@@ -48,11 +48,11 @@ const NewBookForm = () => {
         </div>
         <div className={classes.control}>
           <label htmlFor="url">リンク</label>
-          <input type="text" ref={enterUrlInputRef} />
+          <input type="url" ref={enterUrlInputRef} />
         </div>
         <div className={classes.control}>
           <label htmlFor="link">詳細</label>
-          <input type="text" ref={enterDetailInputRef} />
+          <textarea type="text" ref={enterDetailInputRef} rows="5" />
         </div>
         <div className={classes.control}>
           <label htmlFor="review">感想 </label>
