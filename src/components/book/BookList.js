@@ -23,7 +23,7 @@ const BookList = (props) => {
       })
       .then((data) => setBook(data))
       .catch((err) => console.log(err));
-  });
+  }, [authCtx.token]);
 
   return (
     <ul className={classes.list}>

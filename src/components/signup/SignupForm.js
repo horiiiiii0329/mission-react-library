@@ -12,6 +12,7 @@ const SignupForm = () => {
   const history = useHistory();
 
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -35,7 +36,7 @@ const SignupForm = () => {
           return res.json();
         } else {
           return res.json().then((data) => {
-            let errorMessage = "Authentication error";
+            let errorMessage = data.ErrorMessageJP;
 
             throw new Error(errorMessage);
           });
@@ -46,7 +47,7 @@ const SignupForm = () => {
         history("/book");
       })
       .catch((err) => {
-        alert(err.message);
+        setError(err.message);
       });
   };
 
@@ -66,6 +67,7 @@ const SignupForm = () => {
           <input type="password" id="password" ref={passwordInputRef} />
         </div>
         {isLoading && <p>送信中。。。</p>}
+        {!isLoading && error && <p>{error}</p>}
         <div className={classes.actions}>
           <button className={classes.toggle}>サインアップ</button>
         </div>

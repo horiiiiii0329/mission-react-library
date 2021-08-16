@@ -11,6 +11,7 @@ const LoginForm = () => {
   const authCtx = useContext(AuthContext);
 
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -22,6 +23,7 @@ const LoginForm = () => {
 
     fetch("https://api-for-missions-and-railways.herokuapp.com/signin", {
       method: "POST",
+      mode: "no-cors",
       body: JSON.stringify({
         email: enteredEmail,
         password: enteredpassword,
@@ -36,7 +38,7 @@ const LoginForm = () => {
           return res.json();
         } else {
           return res.json().then((data) => {
-            let errorMessage = "Authentication Fail!";
+            let errorMessage = data.ErrorMessageJP;
 
             throw new Error(errorMessage);
           });
@@ -47,7 +49,7 @@ const LoginForm = () => {
         history.replace("/book");
       })
       .catch((err) => {
-        alert(err.message);
+        setError(err.message);
       });
   };
 
@@ -63,6 +65,7 @@ const LoginForm = () => {
           <input type="password" id="password" ref={passwordInputRef} />
         </div>
         {isLoading && <p>送信中。。。</p>}
+        {!isLoading && error && <p>{error}</p>}
         <div className={classes.actions}>
           <button className={classes.toggle}>ログイン</button>
         </div>
