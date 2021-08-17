@@ -19,7 +19,7 @@ const SignupForm = () => {
 
     const enteredName = nameInputRef.current.value;
     const enteredEmail = emailInputRef.current.value;
-    const enteredpassword = passwordInputRef.current.value;
+    const enteredPassword = passwordInputRef.current.value;
 
     setIsLoading(true);
     fetch("https://api-for-missions-and-railways.herokuapp.com/users", {
@@ -27,7 +27,7 @@ const SignupForm = () => {
       body: JSON.stringify({
         name: enteredName,
         email: enteredEmail,
-        password: enteredpassword,
+        password: enteredPassword,
       }),
     })
       .then((res) => {
