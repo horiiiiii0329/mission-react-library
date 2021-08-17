@@ -1,7 +1,7 @@
 import NewBookForm from "../components/newbook/NewBookForm";
 
 const NewBookPage = () => {
-  return <NewBookForm></NewBookForm>;
+  return <NewBookForm />;
 };
 
 export default NewBookPage;

@@ -1,7 +1,7 @@
 import EditBook from "../components/editbook/EditBook";
 
 const BookEditPage = () => {
-  return <EditBook></EditBook>;
+  return <EditBook />;
 };
 
 export default BookEditPage;

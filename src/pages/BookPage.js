@@ -1,7 +1,7 @@
 import BookList from "../components/book/booklist";
 
 const StartingPageContent = () => {
-  return <BookList></BookList>;
+  return <BookList />;
 };
 
 export default StartingPageContent;
