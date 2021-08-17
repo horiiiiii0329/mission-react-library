@@ -10,6 +10,7 @@ const BookList = (props) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
     fetch("https://api-for-missions-and-railways.herokuapp.com/books", {
       method: "GET",
       headers: {
@@ -27,13 +28,12 @@ const BookList = (props) => {
       })
       .catch((err) => console.log(err))
       .finally(setIsLoading(false));
-  });
-
-  if (isLoading) return "Loading...";
+  }, [authCtx.token]);
 
   return (
     <ul className={classes.list}>
       <AddBookCard />
+      {isLoading && <p>Loading...</p>}
       {book &&
         book.map((book) => (
           <BookItem

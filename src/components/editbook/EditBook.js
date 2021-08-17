@@ -52,7 +52,7 @@ const EditBook = () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${authCtx.token}`,
       },
-    }).then(history.replace("/book"), history.go(0));
+    }).then(history.replace("/book"));
   };
 
   const deleteHandler = () => {

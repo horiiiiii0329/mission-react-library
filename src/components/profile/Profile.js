@@ -1,4 +1,4 @@
-import { useRef, useContext, useState } from "react";
+import { useRef, useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 import AuthContext from "../../store/auth-context";
@@ -11,16 +11,18 @@ const Profile = () => {
   const authCtx = useContext(AuthContext);
   const [userName, setUserName] = useState(null);
 
-  fetch("https://api-for-missions-and-railways.herokuapp.com/users", {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${authCtx.token}`,
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      setUserName(data.name);
-    });
+  useEffect(() => {
+    fetch("https://api-for-missions-and-railways.herokuapp.com/users", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${authCtx.token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setUserName(data.name);
+      });
+  });
 
   const submitHandler = (e) => {
     e.preventDefault();
