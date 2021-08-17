@@ -80,7 +80,7 @@ const EditBook = () => {
 
   return (
     <>
-      <h2 className={classes.title}>書籍情報を変更する</h2>
+      <h2 className={classes.title}>書籍情報を変更</h2>
       {bookDetail && (
         <form className={classes.form} onSubmit={updateHandler}>
           <div className={classes.control}>
