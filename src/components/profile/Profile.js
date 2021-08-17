@@ -18,11 +18,17 @@ const Profile = () => {
         Authorization: `Bearer ${authCtx.token}`,
       },
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw response;
+      })
       .then((data) => {
         setUserName(data.name);
-      });
-  });
+      })
+      .catch((err) => console.log(err));
+  }, [authCtx.token]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -38,10 +44,14 @@ const Profile = () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${authCtx.token}`,
       },
-    }).then((res) => {
-      history.replace("/book");
-      history.go(0);
-    });
+    })
+      .then((response) => {
+        if (response.ok) {
+          history.replace("/book");
+        }
+        throw response;
+      })
+      .catch((err) => console.log(err));
   };
 
   return (

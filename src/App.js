@@ -11,11 +11,11 @@ import NewBookPage from "./pages/NewBookPage";
 import BookDetailPage from "./pages/BookDetailPage";
 import BookEditPage from "./pages/BookEditPage";
 
-function App() {
+function App(props) {
   const authCtx = useContext(AuthContext);
 
   return (
-    <Layout>
+    <Layout onUserName={props.onUserName}>
       <Switch>
         <Route path="/" exact>
           <HomePage />

@@ -45,6 +45,7 @@ const SignupForm = () => {
       .then((data) => {
         authCtx.login(data.token);
         history.replace("/book");
+        history.go(0);
       })
       .catch((err) => {
         setError(err.message);

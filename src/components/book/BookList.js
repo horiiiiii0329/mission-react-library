@@ -33,7 +33,7 @@ const BookList = (props) => {
   return (
     <ul className={classes.list}>
       <AddBookCard />
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <h2>Loading...</h2>}
       {book &&
         book.map((book) => (
           <BookItem

@@ -52,7 +52,12 @@ const EditBook = () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${authCtx.token}`,
       },
-    }).then(history.replace("/book"));
+    }).then((response) => {
+      if (response.ok) {
+        history.replace("/book");
+      }
+    });
+    // .then(history.replace("/book"));
   };
 
   const deleteHandler = () => {
@@ -61,7 +66,16 @@ const EditBook = () => {
       headers: {
         Authorization: `Bearer ${authCtx.token}`,
       },
-    }).then(history.replace("/book"));
+    })
+      .then((response) => {
+        if (response.ok) {
+          history.replace("/book");
+        }
+        throw response;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (

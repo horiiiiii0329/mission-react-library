@@ -35,7 +35,14 @@ const NewBookForm = () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${authCtx.token}`,
       },
-    }).then(history.replace("/book"));
+    })
+      .then((response) => {
+        if (response.ok) {
+          history.replace("/book");
+        }
+        throw response;
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
