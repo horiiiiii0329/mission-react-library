@@ -57,7 +57,7 @@ function App(props) {
         )}
         <Route path="*">
           {authCtx.isLoggedIn && <Redirect to="/book"></Redirect>}
-          {!authCtx.isLoggedIn && <Redirect to="/book"></Redirect>}
+          {!authCtx.isLoggedIn && <Redirect to="/"></Redirect>}
         </Route>
       </Switch>
     </Layout>

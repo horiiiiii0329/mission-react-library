@@ -4,9 +4,8 @@ import { useContext, useState, useEffect } from "react";
 import classes from "./MainNavigation.module.css";
 import AuthContext from "../../store/auth-context";
 
-const MainNavigation = () => {
+const MainNavigation = (props) => {
   const authCtx = useContext(AuthContext);
-  const [userName, setUserName] = useState(null);
 
   const isLoggedIn = authCtx.isLoggedIn;
 
@@ -27,7 +26,7 @@ const MainNavigation = () => {
         }
         throw response;
       })
-      .then((data) => setUserName(data.name))
+      .then((data) => authCtx.setName(data.name))
       .catch((err) => console.log(err));
   }
 
@@ -38,7 +37,7 @@ const MainNavigation = () => {
       </Link>
       <nav>
         <ul>
-          {isLoggedIn && <li>{userName}　さん</li>}
+          {isLoggedIn && <li>{authCtx.name}　さん</li>}
           {!isLoggedIn && (
             <li>
               <Link to="/login">ログイン</Link>

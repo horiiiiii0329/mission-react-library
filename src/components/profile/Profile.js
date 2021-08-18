@@ -9,26 +9,6 @@ const Profile = () => {
 
   const newNameInputRef = useRef();
   const authCtx = useContext(AuthContext);
-  const [userName, setUserName] = useState(null);
-
-  useEffect(() => {
-    fetch("https://api-for-missions-and-railways.herokuapp.com/users", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${authCtx.token}`,
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw response;
-      })
-      .then((data) => {
-        setUserName(data.name);
-      })
-      .catch((err) => console.log(err));
-  }, [authCtx.token]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -47,6 +27,7 @@ const Profile = () => {
     })
       .then((response) => {
         if (response.ok) {
+          authCtx.setName(enteredNewName);
           history.replace("/book");
         }
         throw response;
@@ -58,7 +39,7 @@ const Profile = () => {
     <section className={classes.profile}>
       <form className={classes.form} onSubmit={submitHandler}>
         <div className={classes.control}>
-          <label htmlFor="new-password">ユーザー名:{userName}</label>
+          <label htmlFor="new-password">ユーザー名:{authCtx.name}</label>
           <input
             type="text"
             id="new-name"

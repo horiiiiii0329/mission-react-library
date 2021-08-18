@@ -3,13 +3,16 @@ import React, { useState } from "react";
 const AuthContext = React.createContext({
   token: "",
   isLoggedIn: false,
+  name: "",
   login: (token) => {},
   logout: () => {},
+  setName: (name) => {},
 });
 
 export const AuthContextProvider = (props) => {
   const initialToken = localStorage.getItem("token");
   const [token, setToken] = useState(initialToken);
+  const [name, setName] = useState(null);
 
   const userIsLoggedIn = !!token;
 
@@ -23,11 +26,17 @@ export const AuthContextProvider = (props) => {
     localStorage.removeItem("token");
   };
 
+  const setNameHandler = (name) => {
+    setName(name);
+  };
+
   const contextValue = {
     token: token,
     isLoggedIn: userIsLoggedIn,
+    name: name,
     login: loginHandler,
     logout: logoutHandler,
+    setName: setNameHandler,
   };
 
   return (
