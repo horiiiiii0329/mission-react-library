@@ -35,6 +35,7 @@ const BookList = (props) => {
       <AddBookCard />
       {isLoading && <h2>Loading...</h2>}
       {book &&
+        !isLoading &&
         book.map((book) => (
           <BookItem
             key={book.id}
