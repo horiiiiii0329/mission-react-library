@@ -1,13 +1,13 @@
-import { useRef, useContext } from "react";
-// import NewBookPage from "../../pages/NewBookPage";
+import { useRef, useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import AuthContext from "../../store/auth-context";
+import Spinner from "../UI/Spinner";
 
 import classes from "./NewBookForm.module.css";
 
 const NewBookForm = () => {
   const history = useHistory();
-
+  const [isLoading, setIsLoading] = useState(false);
   const enterTitleInputRef = useRef();
   const enterUrlInputRef = useRef();
   const enterDetailInputRef = useRef();
@@ -17,7 +17,7 @@ const NewBookForm = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-
+    setIsLoading(true);
     const enteredTitle = enterTitleInputRef.current.value;
     const enteredUrl = enterUrlInputRef.current.value;
     const enteredDetail = enterDetailInputRef.current.value;
@@ -38,6 +38,7 @@ const NewBookForm = () => {
     })
       .then((response) => {
         if (response.ok) {
+          setIsLoading(false);
           history.replace("/book");
         }
         throw response;
@@ -65,6 +66,7 @@ const NewBookForm = () => {
           <label htmlFor="review">感想 </label>
           <input type="text" ref={enterReviewInputRef} />
         </div>
+        {isLoading && <Spinner />}
         <div className={classes.actions}>
           <button>登録</button>
         </div>

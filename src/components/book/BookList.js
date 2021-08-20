@@ -3,14 +3,13 @@ import classes from "./BookList.module.css";
 import { useEffect, useState, useContext } from "react";
 import AddBookCard from "../addbook/AddBookCard";
 import AuthContext from "../../store/auth-context";
+import Spinner from "../UI/Spinner";
 
 const BookList = (props) => {
   const [book, setBook] = useState(null);
   const authCtx = useContext(AuthContext);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setIsLoading(true);
     fetch("https://api-for-missions-and-railways.herokuapp.com/books", {
       method: "GET",
       headers: {
@@ -26,16 +25,13 @@ const BookList = (props) => {
       .then((data) => {
         setBook(data);
       })
-      .catch((err) => console.log(err))
-      .finally(setIsLoading(false));
+      .catch((err) => console.log(err));
   }, [authCtx.token]);
 
   return (
     <ul className={classes.list}>
       <AddBookCard />
-      {isLoading && <h2>Loading...</h2>}
-      {book &&
-        !isLoading &&
+      {book ? (
         book.map((book) => (
           <BookItem
             key={book.id}
@@ -45,7 +41,10 @@ const BookList = (props) => {
             text={book.detail}
             isMine={book.isMine}
           />
-        ))}
+        ))
+      ) : (
+        <Spinner />
+      )}
     </ul>
   );
 };

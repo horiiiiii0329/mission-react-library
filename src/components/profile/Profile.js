@@ -2,16 +2,18 @@ import { useRef, useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 import AuthContext from "../../store/auth-context";
+import Spinner from "../UI/Spinner";
 import classes from "./Profile.module.css";
 
 const Profile = () => {
   const history = useHistory();
-
+  const [isLoading, setIsLoading] = useState(false);
   const newNameInputRef = useRef();
   const authCtx = useContext(AuthContext);
 
   const submitHandler = (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     const enteredNewName = newNameInputRef.current.value;
 
@@ -28,6 +30,7 @@ const Profile = () => {
       .then((response) => {
         if (response.ok) {
           authCtx.setName(enteredNewName);
+          setIsLoading(false);
           history.replace("/book");
         }
         throw response;
@@ -47,6 +50,7 @@ const Profile = () => {
             placeholder="ユーザー名"
           />
         </div>
+        {isLoading && <Spinner />}
         <div className={classes.action}>
           <button>更新</button>
         </div>

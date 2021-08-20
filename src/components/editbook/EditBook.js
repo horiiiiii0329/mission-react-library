@@ -2,6 +2,7 @@ import classes from "./EditBook.module.css";
 import { useRef, useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import AuthContext from "../../store/auth-context";
+import Spinner from "../UI/Spinner";
 
 const EditBook = () => {
   const history = useHistory();
@@ -13,6 +14,7 @@ const EditBook = () => {
   const enterDetailInputRef = useRef();
   const enterReviewInputRef = useRef();
 
+  const [isLoading, setIsLoading] = useState(false);
   const [bookDetail, setBookdetail] = useState(null);
 
   useEffect(() => {
@@ -34,6 +36,7 @@ const EditBook = () => {
 
   const updateHandler = (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     const enteredTitle = enterTitleInputRef.current.value;
     const enteredUrl = enterUrlInputRef.current.value;
@@ -54,13 +57,14 @@ const EditBook = () => {
       },
     }).then((response) => {
       if (response.ok) {
+        setIsLoading(false);
         history.replace("/book");
       }
     });
-    // .then(history.replace("/book"));
   };
 
   const deleteHandler = () => {
+    setIsLoading(true);
     fetch(`https://api-for-missions-and-railways.herokuapp.com/books/${id}`, {
       method: "DELETE",
       headers: {
@@ -69,6 +73,7 @@ const EditBook = () => {
     })
       .then((response) => {
         if (response.ok) {
+          setIsLoading(false);
           history.replace("/book");
         }
         throw response;
@@ -81,7 +86,7 @@ const EditBook = () => {
   return (
     <>
       <h2 className={classes.title}>書籍情報を変更</h2>
-      {bookDetail && (
+      {bookDetail ? (
         <form className={classes.form} onSubmit={updateHandler}>
           <div className={classes.control}>
             <label htmlFor="title">タイトル</label>
@@ -115,6 +120,7 @@ const EditBook = () => {
               defaultValue={bookDetail.review}
             />
           </div>
+          {isLoading && <Spinner />}
           <div className={classes.actions}>
             <button>更新</button>
           </div>
@@ -124,6 +130,8 @@ const EditBook = () => {
             </button>
           </div>
         </form>
+      ) : (
+        <Spinner />
       )}
     </>
   );

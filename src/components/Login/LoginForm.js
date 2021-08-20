@@ -2,6 +2,7 @@ import classes from "./LoginForm.module.css";
 import { useState, useRef, useContext } from "react";
 import AuthContext from "../../store/auth-context";
 import { useHistory } from "react-router";
+import Spinner from "../UI/Spinner";
 
 const LoginForm = () => {
   const history = useHistory();
@@ -63,7 +64,7 @@ const LoginForm = () => {
           <label htmlFor="password">パスワード</label>
           <input type="password" id="password" ref={passwordInputRef} />
         </div>
-        {isLoading && <p>送信中。。。</p>}
+        {isLoading && <Spinner />}
         {!isLoading && error && <p>{error}</p>}
         <div className={classes.actions}>
           <button className={classes.toggle}>ログイン</button>
